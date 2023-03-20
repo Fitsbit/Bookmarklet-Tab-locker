@@ -1,3 +1,5 @@
+//MADE BY @Fitsbit aka The King's Crown on discord, aka @FitBEATS on select music platforms.
+
 javascript:(function() {
   // Create overlay UI
   var overlay = document.createElement('div');
@@ -28,7 +30,7 @@ javascript:(function() {
   name.style.color = 'red';
   name.style.fontSize = '28px';
   name.style.fontWeight = 'bold';
-  name.innerHTML = 'Google Classroom - Error loading page';
+  name.innerHTML = 'Google Classroom - 404 Error not found; Error loading page. Please open new tab and try again.';
   overlay.appendChild(name);
 
   // Create locked message in bottom right corner
@@ -38,7 +40,7 @@ javascript:(function() {
   lockedMessage.style.right = '10px';
   lockedMessage.style.color = 'gray';
   lockedMessage.style.fontSize = '12px';
-  lockedMessage.innerHTML = 'Made by @Fitsbit';
+  lockedMessage.innerHTML = 'Made with love by @Fitsbit ❤️';
   overlay.appendChild(lockedMessage);
 
   document.body.appendChild(overlay);
