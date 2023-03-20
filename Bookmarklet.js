@@ -1,0 +1,79 @@
+javascript:(function() {
+  // Create overlay UI
+  var overlay = document.createElement('div');
+  overlay.style.position = 'fixed';
+  overlay.style.top = '0';
+  overlay.style.left = '0';
+  overlay.style.width = '100%';
+  overlay.style.height = '100%';
+  overlay.style.backgroundColor = 'black';
+  overlay.style.opacity = '1';
+  overlay.style.zIndex = '9999';
+
+  // Create Google Classroom logo
+  var logo = document.createElement('img');
+  logo.src = 'https://www.gstatic.com/classroom/favicon.png';
+  logo.style.position = 'absolute';
+  logo.style.top = '20px';
+  logo.style.left = '20px';
+  logo.style.width = '40px';
+  logo.style.height = '40px';
+  overlay.appendChild(logo);
+
+  // Create Google Classroom name with error message
+  var name = document.createElement('div');
+  name.style.position = 'absolute';
+  name.style.top = '25px';
+  name.style.left = '80px';
+  name.style.color = 'red';
+  name.style.fontSize = '28px';
+  name.style.fontWeight = 'bold';
+  name.innerHTML = 'Google Classroom - Error loading page';
+  overlay.appendChild(name);
+
+  // Create locked message in bottom right corner
+  var lockedMessage = document.createElement('div');
+  lockedMessage.style.position = 'absolute';
+  lockedMessage.style.bottom = '10px';
+  lockedMessage.style.right = '10px';
+  lockedMessage.style.color = 'gray';
+  lockedMessage.style.fontSize = '12px';
+  lockedMessage.innerHTML = 'Made by @Fitsbit';
+  overlay.appendChild(lockedMessage);
+
+  document.body.appendChild(overlay);
+
+  // Change tab name to "Classes"
+  document.title = 'Classes';
+
+  // Change tab icon to Google Classroom icon
+  var links = document.getElementsByTagName('link');
+  for (var i = 0; i < links.length; i++) {
+    var link = links[i];
+    if (link.rel === 'shortcut icon' || link.rel === 'icon') {
+      link.href = 'https://www.gstatic.com/classroom/favicon.png';
+    }
+  }
+
+  // Listen for console input to unlock tab
+  console.log('Enter "unlock" in the console to unlock this tab:');
+  var input = '';
+  var handleInput = function(e) {
+    input += e.key;
+    if (input === 'unlock') {
+      console.log('Tab is unlocked!');
+      document.title = 'Unlocked';
+      // Change tab icon back to default Google icon
+      var links = document.getElementsByTagName('link');
+      for (var i = 0; i < links.length; i++) {
+        var link = links[i];
+        if (link.rel === 'shortcut icon' || link.rel === 'icon') {
+          link.href = 'https://www.google.com/favicon.ico';
+        }
+      }
+      document.body.removeChild(overlay);
+      document.removeEventListener('keydown', handleInput);
+    }
+  };
+  document.addEventListener('keydown', handleInput);
+})();
